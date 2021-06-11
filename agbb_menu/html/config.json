@@ -1,0 +1,133 @@
+{
+    "primary": {
+        "items": {
+            "\uf057": "e c",
+            "\uf2c2": "glic"
+        },
+        "colors": [
+            "white",
+            "#E2E2E2"
+        ]
+    },
+    "props": {
+        "items": {
+            "\uf249": "e notepad",
+            "\uf328": "e clipboard",
+            "\uf10b": "e phonecall",
+            "\uf3fc": "e tablet",
+			"\uf48f": "e tablet2",
+            "\uf030": "e camera",
+            "\uf49a": "e box",
+            "\uf5d4": "e backpack",
+            "\uf0b1": "e brief3",
+            "\uf0e9": "e umbrella",
+            "\uf6c5": "e coffee",
+            "\uf8c6": "e beer",
+            "\uf7a1": "e whiskey"
+        },
+        "colors": [
+            "white",
+            "#E2E2E2"
+        ]
+    },
+    "emotes": {
+        "items": {
+            "\uf4c6": "nearby handshake",
+            "\uf6de": "nearby punch",
+            "\uf806": "e finger",
+            "\uf256": "e wave",
+            "\uf165": "e no",
+            "\uf598": "e blowkiss",
+            "\uf586": "e lol",
+            "\uf556": "e crossarms5",
+            "\uf567": "e passout",
+            "\uf132": "e guard",
+            "\uf460": "e whistle",
+            "\uf2a3": "e gangsign2",
+			"\uf2a7": "e clap"
+        },
+        "colors": [
+            "white",
+            "#E2E2E2"
+        ]
+    },
+    "vehicle": {
+        "items": {
+            "\uf011" : "engine",
+            "\uf30d" : "lock",
+			"\uf0a8\uf52b" : "fdoors",
+            "\uf0a9\uf52b" : "rdoors",
+            "\uf4e0" : "trunk",
+            "\uf5e3" : "hood",
+            "\uf72e" : "windowsdown",
+			"\uf7b2" : "toggleneon"
+        },
+        "colors": [
+            "white",
+            "#E2E2E2"
+        ]
+    },
+    "police": {
+        "items": {
+            "\uf002": "search",
+            "\uf502": "cuff",
+            "\uf0d8\uf502": "drag",
+            "\uf0da\uf1b9": "dragin",
+            "\uf0d9\uf1b9": "dragout",
+            "\uf848": "pduress",
+			"\uf4dc" : "impoundtow"
+        },
+        "colors": [
+            "aliceblue",
+            "#F0F8FF"
+        ]
+    },
+	"policedog": {
+        "items": {
+            "\uf002": "search",
+            "\uf502": "cuff",
+            "\uf0d8\uf502": "drag",
+            "\uf0da\uf1b9": "dragin",
+            "\uf0d9\uf1b9": "dragout",
+            "\uf848": "duress",
+			"\uf6d3\uf1b9": "pdinout",
+			"\uf002\uf6d3": "pdsearch",
+			"\uf002\uf1b9\uf6d3": "pdvehsearch",
+			"\uf6d3\uf6c0": "pdsit",
+			"\uf6d3\uf880": "pdlaydown",
+			"\uf8de": "pdsniffattacker"
+
+        },
+        "colors": [
+            "aliceblue",
+            "#F0F8FF"
+        ]
+    },
+    "ambulance": {
+        "items": {
+
+            "\uf0f9\uf52b": "openbaydoors",
+            "\uf830": "checkOther",
+            "\uf848": "amboduress",
+			"\uf63e": "e ecgmonitor",
+			"\uf4dc" : "impoundtow"
+        },
+        "colors": [
+            "white",
+            "#E2E2E2"
+        ]
+    },
+    "unemployed": {
+        "items": {
+            "\uf4c0": "drugstosell",
+            "\uf858": "uber",
+            "\uf500": "carry",
+            "\uf119": "e beg",
+			"\uf6fa": "steal"
+        },
+        "colors": [
+            "white",
+            "#E2E2E2"
+        ]
+    }
+}

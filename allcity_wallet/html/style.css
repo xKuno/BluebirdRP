@@ -1,0 +1,96 @@
+@font-face {
+	font-family: 'Roboto', sans-serif;
+	src: url(https://fonts.googleapis.com/css?family=Anton|Exo+2|Lato|Open+Sans|Oswald|Roboto&display=swap);
+  }
+
+body {color: white; font-family: 'Roboto';}
+
+.fas, .far, .fad, .fal{
+	margin: 0 2.5%;
+	font-size: 30px;
+}
+
+#wrapperHUD {
+	position: absolute;
+	opacity: 0;
+	transition: opacity .35s ease-in-out;
+	top: 15em;
+	display: flex; 
+	flex-direction: row;
+	width: 16.5em;
+}
+
+#moneySection {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, rgba(0,0,0,.4) 0%, rgba(0,0,0,.2) 150%);
+	box-shadow: 0 0 20px -1px rgba(0, 0, 0, 0.4);
+	border-radius: 5px;
+	padding: .3em;
+}
+
+#bankDiv, #walletDiv, #blackMoneyDiv, #societyDiv {
+	margin: 0 auto;
+	display: flex;
+	height: 4em;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	font-weight: 600;
+	justify-content: space-between;
+	align-items: center;
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%) left;
+	border-left: none;
+	border-right: none;
+	border-radius: 5px;
+	position: relative;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+	margin: .5em 0;
+}
+
+i{
+	background-color: #59a0ec;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	text-shadow: -2px 2px #59a0ec50;
+	width: 45px;
+	text-align: center;
+}
+
+#bank, #wallet, #blackMoney, #society {
+	/*display: none;*/
+	color: white;
+	font-size: 30px;
+	width: 70%;
+	height: 60%;
+	text-align:center;
+	position: absolute;
+	right:5%;
+	background-color: rgba(0, 0, 0, .5);
+	border-radius: 5px;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+	padding-top: 2px;
+}
+
+#job {
+	height: 30px;
+	width: 400px;
+	border: black 1px solid;
+	font-size: 25px;	
+}
+
+#infoSection {
+	/*display: none;*/
+	flex-direction: column;
+	justify-content: space-around;
+	margin-top: 20px;
+	margin-left: 20px;
+	width: 31vw;
+	height: 45vh;
+	border: black solid 1px;
+	border-radius: 40px;
+}

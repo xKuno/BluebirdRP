@@ -1,0 +1,117 @@
+@font-face {
+	font-family: Roboto;
+	src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+}
+body {
+    overflow-y: hidden;
+    font-family: 'Roboto', sans-serif;
+    display: none;
+}
+
+h1 {
+    padding: 5%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 50px;
+    font-family: 'Roboto', sans-serif;
+}
+.spawn{
+    position: absolute;
+    left: 50%;
+    top:90%;
+    background: linear-gradient(to left,  lightblue 50%,#4cd964 50%) right;
+    background-size: 200%;
+    transition: background-position .5s ease-out, color .5s ease-out;
+    padding:10px;
+    border: 0px hidden;
+    border-radius: 50px;
+    font-size: 45px;
+    outline:none;
+}
+.spawn:hover{
+    background-position: left;
+    color: white;
+}
+.spawn:focus{
+    color:black;
+    background-position: left;
+}
+.menu{
+    min-width:22em;
+    max-width:25em;
+    min-height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    padding:0px 10px;
+    background-color: rgba(0,0,0,.5);
+    border: 3px hidden rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    z-index: -2;
+}
+
+.menu button{
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,0) 100%);
+    width:90%;
+    margin-left: auto;
+    margin-right:auto;
+    padding: 1em 0px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+	text-align: center;
+	border: 3px hidden black;
+	border-radius: 5px;
+	-webkit-box-shadow: -10px 10px 5px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: -10px 10px 5px 0px rgba(0,0,0,0.4);
+	box-shadow: -10px 10px 5px 0px rgba(0,0,0,0.4);
+    transition: background-color 0.3s ease;
+    overflow:hidden;
+    position: relative;
+    outline: none
+    
+
+}
+.menu button:hover{
+	background-color: rgba(166, 196, 217, 0.25);  
+}
+.menu button img{
+    transition: transform .5s ease;;
+    position:absolute;
+    z-index: -1;
+    width: 100%;
+    height:auto;
+    left:0em;
+    bottom: -50%;
+    transform:scale(1.01);
+    transform-origin:center center !important;
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+    transform: translateZ(0);
+}
+.menu button:focus{
+    color:  rgb(166, 196, 217);
+}
+.menu button:focus img{
+    transform:scale(1.25)
+}
+.menu button:hover img{
+    transform:scale(1.25)
+}
+.police{
+    background-color: rgb(166, 196, 217);
+    margin:0 auto;
+    width: 300px;
+    height: 50px;
+    margin-left: 1%;
+    margin-top: 2%;
+    border-radius: 3px;
+	bottom: 100%;
+    display: none;
+    visibility: hidden;
+}
+
+

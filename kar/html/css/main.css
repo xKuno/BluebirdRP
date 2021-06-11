@@ -1,0 +1,181 @@
+html {
+	font-weight:700;
+    overflow: hidden;
+}
+
+p {
+    margin: 0 !important;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.character-fullname {
+	text-transform: uppercase;
+    font-size:24px !important;
+    text-align: left !important;
+}
+
+.main-tell{
+	width:100%;
+	position:absolute;
+	top:0%;
+}
+
+.main-logo {
+	display: block;
+    width: 50%;
+    z-index: 100;
+    position: absolute;
+    transform: translate(-50%, 0);
+    top: 50%;
+    left: 56%;
+}
+
+.overlay-right {
+    position: absolute;
+    right:0;
+    bottom:0;
+    height: 100%;
+    width: auto;
+}
+
+.main-logo img{
+    width:70%;
+}
+
+.main-container {
+    display:none;
+    width: 100%;
+    top:0;
+}
+
+.character-container {
+    position: relative;
+    height: 100%;
+    max-height: 100%;
+    width: 24em;
+    padding: 0px .5em;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    z-index: 0;
+}
+
+.character-box {
+    color: #FFFFFF;
+    position: relative;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0,0,0,.25) 100%) !important;
+    padding: 10px 20px 20px;
+    text-align: center;
+    border: 3px hidden black !important;
+    display:block;
+    border-radius: 5px !important;
+    margin-top: 5px!important;
+    z-index: 2 !important;
+    box-shadow: 0 0 20px -1px rgba(0, 0, 0, 0.4);
+}
+
+.character-box:hover {
+    background: rgba(42, 125, 193,1.0);
+    background-size: 60px 30px, 100% 100%, 100% 100%;
+    background-color: #0077c6 !important;
+    box-shadow: 0 0 20px -1px #005db9;
+    -webkit-animation: blink 2.5s infinite cubic-bezier(0.5, 0, 0, 1);
+    animation: blink 2.5s infinite cubic-bezier(0.5, 0, 0, 1);
+}
+
+.character-info {
+    text-align: left!important;
+}
+
+.character-info-new {
+    text-align: center !important;
+    font-size: 30px !important;
+}
+.character-buttons {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0,0,0,.2) 100%) !important;
+    box-shadow: 0 0 20px -1px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    border: 3px hidden black;
+    border-radius: 5px;
+    z-index: 2;
+    position: absolute;
+    bottom: 1em;
+    width: 23em;
+}
+
+.char-button{
+    height: 80px;
+    width: 100%;
+    font-weight: 700 !important;
+    font-size: 40px !important;
+    text-align: center;
+    border: 0px hidden black;
+    border-radius: 15px !important;
+}
+
+.char-button i{
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.61) 50%, white 50%) right;
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background-position .5s ease-in-out;
+}
+
+.char-button:hover i{
+    background-position: left;
+}
+
+.btn-play {
+    background: linear-gradient(to left, #1e65bb 50%,  #3673b5 50%) right;
+    background-size: 200%;
+    transition: background-position .5s ease-in-out;
+    color: #FFFFFF;
+}
+
+.btn-play:hover {
+    background-position: left;
+    box-shadow: 0 1.5px 0 #1e65bb;
+    opacity: 1;
+}
+
+/* .btn-play:after{ */
+	/* content:'\00bb'; */
+	/* position:absolute; */
+	/* background: #3673b5; */
+	/* opacity:0; */
+	/* transition:0.5s; */
+/* } */
+
+
+.btn-delete {
+    position: absolute;
+    background: #930b0b;
+    color: #FFFFFF;
+    display:none !important;
+}
+
+.btn-delete:hover {
+    background: #b50c0c;
+    box-shadow: 0 1px 0 #930b0b;
+}
+ .active-char { 
+    background: rgba(42, 125, 193,1.0);
+    background-size: 60px 30px, 100% 100%, 100% 100%;
+    background-color: #0077c6 !important;
+    box-shadow: 0 0 20px -1px #005db9;
+    -webkit-animation: blink 2.5s infinite cubic-bezier(0.5, 0, 0, 1);
+    animation: blink 2.5s infinite cubic-bezier(0.5, 0, 0, 1);
+    transform: scale(1.025);
+} 
+
+ 
+@-webkit-keyframes blink {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}
+@-moz-keyframes blink {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}
+@-ms-keyframes blink {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}
+@keyframes blink {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}

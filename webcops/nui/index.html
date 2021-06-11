@@ -1,0 +1,698 @@
+<html>
+    <head>
+
+
+<script src="jsq/external/jquery/jquery.js" type="text/javascript"></script> 		
+<link href="jsq/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="jsq/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="jsq/jquery-ui.min.js" type="text/javascript"></script> 
+<script src="jsq/jquery-ui.js" type="text/javascript"></script> 
+
+		
+		
+<script>
+function openLink(evt, animName) {
+var i, x, tablinks;
+x = document.getElementsByClassName("city");
+for (i = 0; i < x.length; i++) {
+ x[i].style.display = "none";
+}
+tablinks = document.getElementsByClassName("tablink");
+for (i = 0; i < x.length; i++) {
+ tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+}
+document.getElementById(animName).style.display = "block";
+evt.currentTarget.className += " w3-red";
+}
+
+function exitme(evt, animName){
+$("#cadreport").hide();
+$("#cadlookup").hide();
+$("#civinfo").show();
+}
+</script>
+		
+		<script>
+			var audioPlayer = null;
+			// Listen for NUI Messages.
+			window.addEventListener('message', function(event) {
+				// Check for playSound transaction
+	
+				if (event.data.transactionType == "playSound") {
+				
+				
+				
+				  if (audioPlayer != null) {
+					audioPlayer.pause();
+				  }
+
+				  audioPlayer = new Audio("./sounds/" + event.data.transactionFile + ".ogg");
+				  audioPlayer.volume = event.data.transactionVolume;
+				  audioPlayer.play();
+
+				}
+			});
+
+	function myReportChange(){
+		var report = $("#typer option:selected" ).text()
+
+		if(report == 'Warrant')
+		{
+
+			$( "#txtReason").attr('placeholder', '(1) Outstanding Warrant [Confirmed ID] or Wanted for Questioning [Vehicle Details Only, Suspect Visual Description] (2) List of Charge')
+			$( "#txtReport").attr('placeholder', 'Your report should contain sufficient information for police who come across the individual to not only have a background but be able to pick up and pursue the matter further, including any Magistrate hearing that may be required. Include Time & Date, Location, Incident Details, Suspect Description, Summary of Charges/Offenses, Your Callsign')
+			$("#addwarrant").text('Add Warrant')
+			$( "#txtDisplay").text("Arrest Warrant:")
+		}
+		else if(report == 'Bail Conditions')
+		{
+	
+				$( "#txtReason").prop('placeholder', '(1) Summary Bail Conditions (2) Expire Date DD/MM/YY')
+				$( "#txtReport").prop('placeholder', 'Enter the detailed order of requirements including any dates where these conditions expire')
+				$("#addwarrant").prop('value', 'Add Bail Conditions')
+				$("#addwarrant").text('Add Bail Conditions')
+				$("#txtDisplay").text("Bail Conditions:")
+		}
+		else if (report == 'Field Contact')
+		{
+				$( "#txtReason").prop('placeholder', '(1) Summary / Title of Intelligence')
+				$( "#txtReport").prop('placeholder', 'Detailed Description of events, what was seen, results of any searches or seizures. Details of vehicles/people in cars identification details/phone numbers etc where they relate to a contact with civilians out in the field')
+
+				$("#addwarrant").text('Add Field Contact')
+				$("#txtDisplay").text("Field Contact:")
+				
+				
+		}
+		else if (report == 'Arrest Report')
+		{
+				$( "#txtReason").prop('placeholder', 'Arrest Summary of Charges / Events')
+				$( "#txtReport").prop('placeholder', 'Detailed narrative of events that lead to arrest. Arrest Report does not need to be filled out for a warrant unless additional charges are being filed which maybe contested')
+				$("#addwarrant").prop('value', 'Add Arrest Report')
+				$("#txtDisplay").text("Arrest Report:")
+
+		}
+		else if (report == 'On Remand')
+		{
+				$( "#txtReason").prop('placeholder', 'Remand Summary (why on remand)')
+				$( "#txtReport").prop('placeholder', 'Narrative details of orders or remand information')
+				$("#addwarrant").text('Add Remand Note')
+				$("#txtDisplay").text("Remand Note:")
+		}
+		
+		
+	}
+			 
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="nui://webcops/nui/w3.css">
+<script src="menu.js" type="text/javascript"></script> <!-- Main menu script for DispatchSystem -->
+<link href="index.css" rel="stylesheet" type="text/css" /> <!-- Harry Styles -->		
+<script src="localization.js" type="text/javascript"></script>
+<script>
+$( function() {
+$( "#speed" ).selectmenu();
+
+$( "#files" ).selectmenu();
+
+$( "#number" )
+.selectmenu()
+.selectmenu( "menuWidget" )
+.addClass( "overflow" );
+
+$( "#salutation" ).selectmenu();
+} );
+</script>		
+			
+
+			<style>
+			.button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: white;
+			padding: 6px 10px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			-webkit-transition-duration: 0.4s; /* Safari */
+			transition-duration: 0.4s;
+			cursor: pointer;
+			}
+
+			.button1 {
+			background-color: white; 
+			color: black; 
+			border: 2px solid #4CAF50;
+			}
+
+			.button1:hover {
+			background-color: #4CAF50;
+			color: white;
+			}
+
+			.button2 {
+			background-color: white; 
+			color: black; 
+			border: 2px solid #008CBA;
+			}
+
+			.button2:hover {
+			background-color: #008CBA;
+			color: white;
+			}
+
+			.button3 {
+			background-color: white; 
+			color: black; 
+			border: 2px solid #f44336;
+			}
+
+			.button3:hover {
+			background-color: #f44336;
+			color: white;
+			}
+
+			.button4 {
+			background-color: white;
+			color: black;
+			border: 2px solid #e7e7e7;
+			}
+
+			.button4:hover {background-color: #e7e7e7;}
+
+			.button5 {
+			background-color: white;
+			color: black;
+			border: 2px solid #555555;
+			}
+
+			.button5:hover {
+			background-color: #555555;
+			color: white;
+			}
+			</style>
+    </head>
+    <body>
+	<!--
+	Drug Test 
+	-->
+	<div id="dts" style="background-image: url('https://image.ibb.co/cGpugS/drugwipe.png'); background-repeat: no-repeat;">
+		<br />
+		<br />
+
+		<pre style="font-size: 23px; color:red;" id ="dtcan"></pre>
+		<pre  style="font-size: 23px; color:red;" id ="dtmeth"></pre>
+
+		<div class="wrapper">
+		  
+			<div>
+				
+			</div>
+
+		</div>
+	</div>
+
+	<div id="dtsm" class="menu" noexit="true">
+	<button class="option" data-sub="dtsm_dtsm">Lick Prongs</button>
+	<button class="option" data-action="btproxm dtresult refuse">Refuse Test</button>
+	</div>
+	<div id="dtsm_dtsm" class="menu" data-parent="dtsm" noexit="true">
+	<button class="option" data-action="btproxm dtresult false,false">Negative Result</button>
+	<br />
+	<button class="option" data-action="btproxm dtresult true,true">+Cannabis +Methamp.</button>
+	<button class="option" data-action="btproxm dtresult true,false">-Cannabis +Methamp.</button>
+	<button class="option" data-action="btproxm dtresult false,true">+Cannabis -Methamp.</button>
+	</div>
+
+	<!--
+	Breath Test Straw
+	-->
+	<div id="btstraw" style="background-image: url('https://image.ibb.co/jzJ9Vn/btscreen_nb_s.png'); background-repeat: no-repeat;">
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<p style="font-size: 18px; color:black;" id ="ll1status">&nbsp;</p>
+		<p style="font-size: 18px; font-weight: bold; color:black;"> <span style="font-size: 16px; font-weight: bold; color:green;" id="ll2reading">&nbsp;</span><span style="font-size: 16px; font-weight: bold; color:red;" id="ll3reading"> </span></p>
+
+		<div class="wrapper">
+		  
+			<div>
+				
+			</div>
+
+		</div>
+	</div>
+
+	<div id="btstrawm" class="menu" noexit="true">
+	<button class="option" data-action="btproxm pblow">Blow</button>
+	<button class="option" data-action="btproxm pblowrefuse">Refuse Test</button>
+	</div>
+
+	<!--
+	Breath Test Prox
+	-->
+	<div id="btprox" style="background-image: url('https://image.ibb.co/nRovLn/btscreen_nb.png'); background-repeat: no-repeat;">
+	<br />
+	<br />
+	<br />
+	<p style="font-size: 16px; color:black;" id ="l1status">&nbsp;</p>
+	<p style="font-size: 14px; font-weight: bold; color:black;"> <span style="font-size: 14px; font-weight: bold; color:green;" id="l2reading">&nbsp;</span><span style="font-size: 14px; font-weight: bold; color:red;" id="l3reading"> </span></p>
+
+	<div class="wrapper">
+	  
+		<div>
+			
+		</div>
+
+	</div>
+	</div>
+
+	<div id="btproxm" class="menu" noexit="true">
+	<button class="option" data-action="btproxm prxcount">Count to 5</button>
+	<button class="option" data-action="btproxm prxrefuse">Refuse Test</button>
+	</div>
+
+
+	<div id="btcop" class="menu" >
+
+	</div>
+	
+	<div id="fpoliceid" style="background-image: url('nui://webcops/nui/img/bbpolicefed.png'); background-repeat: no-repeat;">
+	
+	
+	<br />
+	<br />
+	<br />
+
+	<div class="wrapper">
+	  
+		<div>
+			
+		</div>
+
+	</div>
+	</div>	
+	<div id="policeid" style="background-image: url('nui://webcops/nui/img/police.png'); background-repeat: no-repeat;">
+	
+	
+	<br />
+	<br />
+	<br />
+
+	<div class="wrapper">
+	  
+		<div>
+			
+		</div>
+
+	</div>
+	</div>
+	<div id="psopoliceid" style="background-image: url('nui://webcops/nui/img/pso.png'); background-repeat: no-repeat;">
+	
+	
+	<br />
+	<br />
+	<br />
+
+	<div class="wrapper">
+	  
+		<div>
+			
+		</div>
+
+	</div>
+	</div>	
+	<div id="sheriffid" style="background-image: url('nui://webcops/nui/img/sheriff.png'); background-repeat: no-repeat;">
+	
+	
+	<br />
+	<br />
+	<br />
+
+	<div class="wrapper">
+	  
+		<div>
+			
+		</div>
+
+	</div>
+	</div>	
+	<!--
+LICENCE
+-->
+		<div id="licinfo" style="background-image: url('nui://webcops/nui/img/lic.png');">
+		<h1><p style="font-size: 22px; font-weight: bold;color: white;" id="dltitle">None</h1>
+		<div class="wrapper">
+			<div>
+				<span><h3>Licence No.: </h3><p id="licid"></p></span>
+				<span><h3>Name: </h3><p id="licname">None, None</p></span>
+				<span><h3>Address: </h3><p id="licaddress">None</p></span>
+				<span><h3>Licence: </h3><p id="lictypec">None</p></span>
+				<!--<br />-->
+				<span><h3>Expiry: </h3><p id="licexp">None</p></span>
+			</div>
+
+		</div>
+		</div>
+        <!--
+            CIVILIAN MENUS
+        -->
+		<div id="menuBgCiv">
+
+		</div>
+<div id="lic" class="menu">
+<button class="option" data-action="civ fdsa">[Press F5 to exit if stuck]</button>
+</div>
+        <div id="civinfo">
+            <h1 id="civinfo-header"></h1>
+            <div class="wrapper">
+                <!-- CIV SIDE -->
+				<!-- CIV SIDE -->
+				<div>
+					<h2>Civilian: </h2>
+					<span><h3>Name: </h3><p id="civname">None, None</p></span>
+					<span><h3>DOB: </h3><p id="civdob">None</p></span>
+					<span><h3>Address: </h3><p id="civaddress">None</p></span>
+					<!--<span><h3>Warrant: </h3><p id="civwarrant">None</p></span>-->
+					<!--<span><h3>Whereabouts: </h3><p id="civwhereabouts">None</p></span> -->
+					<h2 class="wrapL">Licence Information:</h2>
+					<span><h3>Licence: </h3><p id="lictype">None</p></span>
+					<span><h3>Status: </h3><p id="licstat">None</p></span>
+					<!--<span><h3>Alcohol: </h3><p id="bt">None</p></span> -->
+					<!--<span><h3>Drugs: </h3><p id="dt">None</p></span>-->
+				</div>
+				
+				<div><!-- VEH SIDE
+					<h2>Vehicle: </h2>
+					<span><h3>Plate: </h3><p id="vehplate">None</p></span>
+					<span><h3>Stolen: </h3><p id="vehstolen">None</p></span>
+					<span><h3>Registered: </h3><p id="vehregi">None</p></span>
+					<span><h3>Insured: </h3><p id="vehinsured">None</p></span> -->
+				</div>
+            </div>
+        </div>
+        <div id="civ" class="menu">
+			
+			<button id="btn-newciv" class="option" data-action="civ newname">👉 Character Setup 👈<br/>🚨(NEW? Click here)🚨</button>
+			<button id="btn-giveid" class="option" data-action="civ topolice">Give Identification to Police</button>
+			<button id="btn-carwind" class="option" data-action="civ windows">Toggle Car Windows</button>
+			<button id="btn-giveid" class="option" data-action="civ keys">Give passenger Car keys</button>
+			<button id="btn-swapjobs" class="option" data-action="civ swapjob">Swap to Saved Job</button>
+        </div>
+        <div id="civ_civ" class="menu" data-parent="civ">
+            <button id="btn-civcreate" class="option" data-action="civ newname"></button>
+            <button id="btn-civdisplay" class="option" data-action="civ civdisplay"></button>
+            <button id="btn-civwarrant" class="option" data-action="civ warrant"></button>
+            <button id="btn-civcit" class="option" data-action="civ citations"></button>
+        </div>
+        <div id="civ_veh" class="menu" data-parent="civ">
+            <button id="btn-vehcreate" class="option" data-action="civ newveh"></button>
+            <button id="btn-vehdisplay" class="option" data-action="civ vehdisplay"></button>
+            <button id="btn-vehstolen" class="option" data-action="civ vehstolen"></button>
+            <button id="btn-vehregi" class="option" data-action="civ vehregi"></button>
+            <button id="btn-vehinsured" class="option" data-action="civ vehinsurance"></button>
+        </div>
+        <div id="civ_911" class="menu" data-parent="civ">
+            <button id="btn-call911" class="option" data-action="civ 911init"></button>
+            <button id="btn-msg911" class="option" data-action="civ 911msg"></button>
+            <button id="btn-end911" class="option" data-action="civ 911end"></button>
+        </div>
+        <!--
+            LEO MENUS
+        -->
+		<div id="menuBg">
+
+		</div>
+        <div id="ofcinfo">
+            <h1 id="ofcinfo-header"></h1>
+            <div class="wrapper">
+                <div>
+                    <h2 id="header-ofc"></h2>
+                    <span><h3 id="header-ofcsign"></h3><p id="ofcsign"></p></span>
+                    <span><h3 id="header-ofcstatus"></h3><p id="ofcstatus"></p></span>
+                   <!-- <span><h3 id="header-ofcass"></h3><p id="ofcass"></p></span>  -->
+                </div>
+            </div>
+        </div>
+        <div id="leo" class="menu">
+            <button id="btn-leocreate" class="option login" data-action="leo create"></button>
+			<button id="btn-leocreate1" class="option login" data-action="leo create1"></button>
+            <button id="btn-leostatus" class="option stat" data-sub="leo_status"></button>
+			<button class="option duress" data-action="leo db">[- DURESS -]</button>
+			<button class="option leap" data-action="leo copsd">Law Enforcement Assistance Program (LEAP)</button>
+
+            <button id="btn-leodelprofiles" class="option" data-action="common dsreset"></button>
+        </div>
+        <div id="leo_status" class="menu" data-parent="leo">
+			<button id="btn-leoresponding" class="option" data-action="leo responding"></button>
+			<button id="btn-leoonscene" class="option" data-action="leo onscene"></button>
+			<button id="btn-leotraffics" class="option" data-action="leo traffics"></button>
+            <button id="btn-leoonduty" class="option" data-action="leo onduty"></button>
+            <button id="btn-leooffduty" class="option" data-action="leo offduty"></button>
+            <button id="btn-leobusy" class="option" data-action="leo busy"></button>
+			<button id="btn-leo toggle" class="option" data-action="leo robbs">Toggle Store Robberies</button>
+			<button id="btn-leo toggle" class="option" data-action="leo setpolveh">Set Unit Vehicle</button>
+			<button id="btn-leo toggle" class="option" data-action="leo setpolget">Get Unit Vehicle</button>
+        </div>
+        <div id="leo_database" class="menu" data-parent="leo">
+            <button id="btn-leocivoptions" class="option" data-sub="leo_civ"></button>
+            <button id="btn-leoplate" class="option" data-action="leo plate"></button>
+        </div>
+		
+		
+
+	<div id="cadlookup">
+	<div class="wrapper" style="background-color: rgba(0, 0, 0, 0.8)" >
+			<div class="w3-sidebar w3-bar-block w3-black w3-card" style="width:170px; bottom: 3%; min-height: 450px; max-height:550px; background-color: rgba(0, 0, 0, 0.8)">
+			  <h5 class="w3-bar-item" style="background-color: rgba(0, 0, 0, 0.8)" >&nbsp;</h5>
+			  <button class="w3-bar-item w3-button tablink" style="background-color: rgba(0, 0, 0, 0.8)"  onclick="openLink(event, 'Search')">🧍SEARCH PEOPLE</button>
+			  <button class="w3-bar-item w3-button tablink" style="background-color: rgba(0, 0, 0, 0.8)"  onclick="openLink(event, 'Fade')">🚙SEARCH VEHICLE</button>
+			  <button class="w3-bar-item w3-button tablink" style="background-color: rgba(0, 0, 0, 0.8)"  onclick="openLink(event, 'SHISTORY')">📋SEARCH HISTORY</button>
+			  <button class="w3-bar-item w3-button tablink" style="background-color: rgba(0, 0, 0, 0.8)"  onclick="openLink(event, 'PIN')">🎫PIN</button>
+			  <button class="w3-bar-item w3-button tablink" style="background-color: rgba(0, 0, 0, 0.8)"  onclick="openLink(event, 'CH')">📜CRIM HIST</button>
+			  <button class="w3-bar-item w3-button tablink" style="background-color: rgba(0, 0, 0, 0.8)"  onclick="openLink(event, 'REPORTS')">📓REPORTS</button>
+			  <button class="w3-bar-item w3-button tablink" style="background-color: rgba(0, 0, 0, 0.8)"  onclick="openLink(event, 'ACT')">✍️ACTIONS</button>
+			  <button class="w3-bar-item w3-button tablink" style="background-color: rgba(0, 0, 0, 0.8)"  onclick="openLink(event, 'SHERIFF')">💳FIN. RECORDS</button>
+			  <button class="w3-bar-item w3-button tablink" style="background-color: rgba(0, 0, 0, 0.8)"  onclick="openLink(event, 'SUPERVISOR')">👮SUPERVISOR</button>
+			  
+			  <!--<button class="w3-bar-item w3-button tablink" style="background-color: rgba(0, 0, 0, 0.8)"  onclick="openLink(event, 'CS')">CHARGE SHEET</button> -->
+			  <button class="w3-bar-item w3-button tablink" style="background-color: rgba(0, 0, 0, 0.8)"  onclick="exitme(event, 'CS')">EXIT</button>
+
+			</div>
+			
+			<div style="margin-left:150px; margin-bottom: 10px;">
+			
+			  <div id="Search" class="w3-container city w3-animate-opacity; " style="display:block;background-color: rgba(0, 0, 0, 0.8)">
+				<h2>Search Person</h2>
+				
+				
+				<table>
+
+					  <tr >
+						<td colspan = "2">
+						<input type="text" id="tsearchp" name="Search" placeholder="John Citizen"><br/>
+						<button id="submitname" class="button button2">Run Person Check</button>
+						</td>
+						
+						
+					  </tr>
+					<tr >
+
+					<td><textarea readonly spellcheck="false" id="personcheck" rows="28" style = "-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;" placeholder=""></textarea></td>
+				  </tr>
+				
+				</table>
+				
+			  </div>
+			  <div id="Fade" class="w3-container city w3-animate-opacity" style="display:none;background-color: rgba(0, 0, 0, 0.8)">
+				<h2>Search Vehicles</h2>
+				<table>
+
+						<tr >
+						<td colspan = "2">
+						<input type="text" id="tsearchv" name="Search" placeholder="A8E5CDVA"><br/>
+						<button id="submitinc" class="button button2">Run Vehicle Check</button>
+						</td>
+						 </tr>
+				  <tr >
+
+					<td><textarea  id="carcheck" readonly spellcheck="false" rows="28" style = "-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;" placeholder=""></textarea></td>
+				  </tr>
+				
+				</table>
+				</p>
+			  </div>
+
+				<div id="PIN" class="w3-container city w3-animate-opacity" style="display:none;;background-color: rgba(0, 0, 0, 0.8)">
+				<h2>Penalty Infringment Notices</h2>
+				<table>
+					<tr >
+					<td><textarea readonly id="pinhistory" spellcheck="false" rows="28" style = "-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;" placeholder=""></textarea></td>
+				  </tr>
+				  </table>
+			  </div>
+				<div id="CH" class="w3-container city w3-animate-opacity" style="display:none;background-color: rgba(0, 0, 0, 0.8)">
+				<h2>Criminal History</h2>
+				<table>
+				<tr>
+					<td><textarea readonly id="crimhistory" spellcheck="false" rows="28" style = "-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;" placeholder=""></textarea></td>
+				  </tr>
+				 </table>
+			  </div>
+			  
+				<div id="ACT" class="w3-container city w3-animate-opacity" style="display:none;background-color: rgba(0, 0, 0, 0.8)">
+				<h2>Police Actions</h2>
+				<table>
+				  <tr>
+					<td><button id="suspendlic" class="button button2">Toggle Suspend Drivers Licence</button></td>
+					<td><button id="revokepn" class="button button2">Revoke Prev Chrg/PN Notice</button></td>
+					<td><button id="revokeweaponlic" class="button button2">Revoke Weapon Licence</button></td>
+				  </tr>
+				 <tr>
+					<td><button id="flagweapons" class="button button2">Flag Weapons</button></td>
+					<td><button id="flagmentalhealth" class="button button2">Flag Mental Health</button></td>
+					<td><button id="flagviolence" class="button button2">Flag Violence</button></td>
+				  </tr>
+				  <tr>
+					<td><button id="togglestolenveh" class="button button2">Toggle Stolen Vehicle</button></td>
+					<td><button id="flagviolencepolice" class="button button2">Flag Violence /ag Police</button></td>
+					<td><button id="closecrimwarrant" class="button button2">CLEAR Criminal Warrants</button></td>
+				  </tr>
+				  
+				  <tr>
+					<td><button id="closebail" class="button button2">CLEAR Active Bail</button></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				  </tr>
+
+					<tr>
+
+					<td colspan="3">
+				
+					<select id="typer" name="typer" onchange="myReportChange()">
+						<option value="Warrant">Warrant</option>
+						<option value="Arrest Report">Arrest Report</option>
+						<option value="On Remand">On Remand</option>
+						<option value="Bail Conditions">Bail Conditions</option>
+						<option value="Field Contact">Field Contact</option>
+					</select>
+					
+					<span id="txtDisplay" style="color:#BEBEBE">Warrant Reason:</span>
+					<br/>
+					<textarea  id="txtReason" rows="6" style = "-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;" placeholder="(1) Outstanding Warrant [Confirmed ID] or Wanted for Questioning [Vehicle Details Only, Suspect Visual Description] (2) List of Charges"></textarea>
+					<br /><span style="color:#BEBEBE">Report Details:</span><br/>
+					<textarea  id="txtReport" rows="20" style = "-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;" placeholder="Your report should contain sufficient information for police who come across the individual to not only have a background but be able to pick up and pursue the matter further, including any Magistrate hearing that may be required. Include Time & Date, Location, Incident Details, Suspect Description, Summary of Charges/Offenses, Your Callsign"></textarea>
+					<br />
+					<button id="addwarrant" class="button button2">Add Warrant</button>
+					</td>
+				  </tr>
+				 </table>
+			  </div>
+			  <div id="SUPERVISOR" class="w3-container city w3-animate-opacity" style="display:none;background-color: rgba(0, 0, 0, 0.8)">
+				<h2>SUPERVISOR</h2>
+				<table>
+				<tr>
+					<td><button id="refreshpolice" class="button button2">Refresh Units</button><button id="refreshphone" class="button button2">Phone Numbers</button></td>
+				  </tr>
+					<tr>
+					<td><textarea readonly id="freshpolicetxt" spellcheck="false" rows="28" style = "-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;" placeholder=""></textarea></td>
+				  </tr>
+				 </table>
+			  </div>
+			  
+			  
+			  
+			<div id="SHISTORY" class="w3-container city w3-animate-opacity" style="display:none;background-color: rgba(0, 0, 0, 0.8)">
+				<h2>CAD HISTORY</h2>
+				<table>
+				<tr>
+					<td><button id="refreshcad" class="button button2">Refresh</button></td>
+				  </tr>
+					<tr>
+					<td><textarea readonly id="cadthistory" spellcheck="false" rows="28" style = "-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;" placeholder=""></textarea></td>
+				  </tr>
+				 </table>
+			  </div>
+			  	<div id="REPORTS" class="w3-container city w3-animate-opacity" style="display:none;background-color: rgba(0, 0, 0, 0.8)">
+				<h2>REPORTS</h2>
+				<table>
+				<tr>
+					<td><button id="refreshcad" class="button button2">Refresh</button></td>
+				  </tr>
+					<tr>
+					<td><textarea readonly id="cadrhistory" spellcheck="false" rows="28" style = "-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;" placeholder=""></textarea></td>
+				  </tr>
+				 </table>
+			  </div>
+			  <div id="SHERIFF" class="w3-container city w3-animate-opacity" style="display:none;background-color: rgba(0, 0, 0, 0.8)">
+				<h2>FINANCIAL HISTORY (SHERIFF)</h2>
+				<table>
+				<tr>
+					<td><button id="refreshsherif" class="button button2">Refresh</button></td>
+				  </tr>
+					<tr>
+					<td><textarea readonly id="sheriffhistory" spellcheck="false" rows="28" style = "-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;" placeholder=""></textarea></td>
+				  </tr>
+				 </table>
+			  </div>
+			  <div id="CS" class="w3-container city w3-animate-opacity" style="display:none;background-color: rgba(0, 0, 0, 0.8)">
+				<h2>Charge Sheet</h2>
+
+				<select id="CallType" multiple="multiple" size="10">
+		
+					<tr>
+					<tr>
+					<td><textarea spellcheck="false" rows="28" cols="60" placeholder=""></textarea></td>
+				  </tr>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<div id="cadreport">
+	<h1>Charge Sheet</h1>
+	<div class="wrapper">
+		<!-- CIV SIDE -->
+		<table>
+			  <tr>
+				<th colspan="2"><center>Incident Report</center></th>
+			  </tr>
+			  <tr>
+				<td><label for="dtime">Date/Time</label></td>
+				<td><label for="loc">Location</label></td>
+			  </tr>
+			  <tr>
+				<td><input type="text" id="dtime" name="dateTime" placeholder="dd/mm/yy 00:00"></td>
+				<td><input type="text" id="loc" name="loc" placeholder="Street, Suburb"></td>
+			  </tr>
+				<tr>
+				<td><label for="fname">First Name</label></td>
+				<td><label for="lname">Last Name</label></td>
+			  </tr>
+			  <tr>
+				<td><input type="text" id="fname" name="firstname" placeholder="Offender First Name..."></td>
+				<td><input type="text" id="lname" name="lastname" placeholder="Offender Last Name..."></td>
+			  </tr>
+			  <tr>
+				<td><label for="CallType">Incident Type</label></td>
+				<td><label for="CallType">Incident Description</label></td>
+			  </tr>
+			  <tr>
+				<td>	</td>
+			<td><textarea rows="10" cols="45" placeholder="Description of Incident, what happened, who as involved etc.."></textarea></td>
+		  </tr>
+			<tr>
+			<td><button id="submitinc">Submit</button></td>
+			<td><input type="reset" value="Reset"></td>
+		  </tr>
+		</table>
+
+		
+	</div>
+	</div>		
+    </body>
+    </html>

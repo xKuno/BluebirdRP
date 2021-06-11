@@ -1,0 +1,2 @@
+var tutorialTitle = "";
+var tutorialDescription = "";

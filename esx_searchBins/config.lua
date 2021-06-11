@@ -1,0 +1,121 @@
+Config = {
+	SearchTime = 18000, -- How much time it takes to search in millisecond.
+
+	Dumpsters = { -- Props of the dumpsters wich is getting defined in the client.
+		`prop_dumpster_01a`,
+		`prop_dumpster_02a`,
+		`prop_dumpster_02b`,
+		1551880420,
+		1329570871,
+	},
+
+	Items = { -- Add whatever items you want here, listing an item more then once increases chance of getting it over others.
+		{name="lowradio",min=1,max=1},
+		{name="lowradio",min=1,max=1},
+		{name="lowradio",min=1,max=1},
+		{name="bread",min=3,max=5},
+		{name="bread",min=3,max=5},
+		{name="bread",min=1,max=5},
+		{name="bread",min=1,max=1},
+		{name="bread",min=1,max=1},
+		{name="coke",min=1,max=1},
+		{name="stockrim",min=1,max=1},
+		{name="stockrim",min=1,max=2},
+		{name="stockrim",min=1,max=1},
+		{name="stockrim",min=1,max=1},
+		{name="stockrim",min=1,max=1},
+		{name="highrim",min=1,max=2},
+		{name="airbag",min=1,max=2},
+		{name="airbag",min=1,max=2},
+		{name="elights",min=1,max=1},
+		{name="bandage",min=1,max=3},
+		{name="bandage",min=1,max=3},
+		{name="bandage",min=1,max=3},
+		{name="medkit",min=1,max=1},
+		{name="diamond",min=1,max=1},
+		{name="bolchips",min=1,max=1},
+		{name="chocolate",min=1,max=1},
+		{name="chocolate",min=1,max=1},
+		{name="drpepper",min=1,max=1},
+		{name="drpepper",min=1,max=1},
+		{name="icetea",min=1,max=1},
+		{name="c4_bank",min=1,max=1},
+		{name="blowtorch",min=1,max=1},
+		{name="screwdriver",min=1,max=1},
+		{name="nitro",min=1,max=1},
+		{name="key",min=1,max=1},
+		{name="lithium",min=1,max=1},
+		{name="lithium",min=1,max=1},
+		{name="lithium",min=1,max=1},
+		{name="battery",min=1,max=2},
+		{name="laptop",min=1,max=1},
+		{name="applewatch",min=1,max=1},
+		{name="ipod",min=1,max=1},
+		{name="methlab",min=1,max=1},
+		{name="gauze",min=1,max=2},
+		{name="gauze",min=1,max=2},
+		{name="medkit",min=1,max=2},
+		{name="medkit",min=1,max=2},
+		{name="medkit",min=1,max=2},
+		{name="weed",min=1,max=1},
+		{name="weed",min=1,max=1},
+		{name="mobile_phone",min=1,max=1},
+		{name="coke_pooch",min=1,max=1},
+		{name="meth_pooch",min=1,max=1},
+		{name="alive_chicken",min=1,max=1},
+		{name="mobile_phone",min=1,max=1},
+		{name="seed_weed",min=1,max=1},
+		{name="seed_weed",min=1,max=1},
+		{name="seed_weed",min=1,max=1},
+		{name="lighter",min=1,max=1},
+		{name="lighter",min=1,max=1},
+		{name="lighter",min=1,max=1},
+		{name="lighter",min=1,max=1},
+		{name="bread",min=1,max=2},
+		{name="lighter",min=1,max=1},
+		{name="moneywashid",min=1,max=1},
+		{name="tv",min=1,max=1},
+		{name="tv",min=1,max=1},
+		{name="gold",min=1,max=1},
+		{name="iron",min=1,max=1},
+		{name="bandage",min=1,max=1},
+		{name="wool",min=1,max=1},
+		{name="burger",min=1,max=1},
+		{name="burger",min=1,max=1},
+		{name="burger",min=1,max=1},
+		{name="acetone",min=1,max=1},
+		{name="slurpee",min=1,max=1},
+		{name="tp2",min=1,max=1},
+		{name="tp3",min=1,max=1},
+		{name="mask2",min=1,max=1},
+		{name="mask3",min=1,max=1},
+	},
+	
+	RareItems = { --Rare items.
+		{name="xanax" ,min=1,max=1},
+		{name="steel",min=1,max=2},
+		{name="moneywashid",min=1,max=1},
+		{name="repairkit",min=1,max=1},
+		{name="plastic",min=1,max=2},
+	},
+	
+	ItemsChance = { --Chance out of 50 to get an item.
+		{min=1, max =15}
+	},
+	
+	RareItemsChance	 = { --Chance out of 50 to get a rare item.
+		{min=math.random(47,49), max =50}
+	},
+	
+	TotalChance	 = { --Total chance for random number generation.
+		{min=1, max =50}
+	}
+}
+
+Strings = { -- Translation
+	["Search"] = "Press [~g~E~s~] to search",
+	["Searched"] = "You've already searched this dumpster!",
+	["Found"] = "You found ",
+	["Searching"] = "Searching...",
+	["Nothing"] = "You found nothing..."
+}

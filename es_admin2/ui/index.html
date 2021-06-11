@@ -1,0 +1,327 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<style>#admin,#exist { display: none; }</style>
+
+		<script>
+			let selected = 0;
+			$(function(){
+				$(document).keyup(function(e) {
+					if(e.keyCode == 27){
+						$("#admin").css('display', 'none')
+						$.post('http://es_admin2/close', JSON.stringify({}));
+					}
+				})
+				window.addEventListener('message', function(event) {
+					if(event.data.type == "open"){
+						$('#notexist').css('display', 'block')
+						$('#exist').css('display', 'none')
+						$("#admin").css('display', "block")
+						$('input').val("")
+
+						$('#list').empty()
+						var d = {}					
+						
+						for(let i in event.data.players){
+							let player = event.data.players[i];
+							d[player.id] = player
+						}
+						
+						const ordered = {};
+						Object.keys(d).sort().forEach(function(key) {
+						  ordered[key] = d[key];
+						});
+								
+						$('#list').empty()
+						$('#list').append('<input type="text" class="user-filter">')						
+						for(let i in ordered){
+							let player = d[i];
+							$('#list').append('<div class="player"  id="player_' + player.id + '">' + player.id + ' ' + player.name + '</div>')
+						}
+						$(".player").click(function(){
+							let id = $(this).attr('id').replace('player_', '')
+							selected = parseInt(id)
+
+							$('.player').removeClass('selected')
+							$(this).addClass('selected')
+
+							$('#exist').find('h1').text(selected + ", " + $(this).text())
+
+							$('#notexist').css('display', 'none')
+							$('#exist').css('display', 'block')
+						})
+						
+					} else if (event.data.type == "history"){
+							let history = event.data.history;
+
+							$("#serverresponse").text(history)
+					} else if(event.data.type == "close"){
+							$("#admin").css('display', 'none')
+							$.post('http://es_admin2/close', JSON.stringify({}));
+					}
+					
+					
+				});
+				
+				
+
+				$("#close").click(() => {
+					$("#admin").css('display', 'none')
+					$.post('http://es_admin2/close', JSON.stringify({}));
+				})
+
+				$("#select_users").click(() => {
+					$('#server').css('display', 'none')
+					$('#history').css('display', 'none')
+					$('#rules').css('display', 'none')
+					$('#users').css('display', 'block')
+					$(".tab").removeClass("selected")
+					$("#select_users").addClass("selected")
+					$("#select_users").blur()
+				})
+
+				$("#select_server").click(() => {
+					$('#users').css('display', 'none')
+					$('#history').css('display', 'none')
+					$('#rules').css('display', 'none')
+					$('#server').css('display', 'block')
+					$(".tab").removeClass("selected")
+					$("#select_server").addClass("selected")
+					$("#select_server").blur()
+				})
+				
+				$("#select_history").click(() => {
+					$('#users').css('display', 'none')
+					$('#server').css('display', 'none')
+					$('#history').css('display', 'block')
+					$('#rules').css('display', 'none')
+					$(".tab").removeClass("selected")
+					$("#select_history").addClass("selected")
+					$("#select_history").blur()
+				})
+				
+				$("#select_rules").click(() => {
+					$('#users').css('display', 'none')
+					$('#server').css('display', 'none')
+					$('#history').css('display', 'none')
+					$('#rules').css('display', 'block')
+					$(".tab").removeClass("selected")
+					$("#select_rules").addClass("selected")
+					$("#select_rules").blur()
+				})
+
+				$("#slay_all").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'slay_all'})); $(this).blur()})
+				$("#bring_all").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'bring_all'})); $(this).blur()})
+				$("#slap_all").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'slap_all'})); $(this).blur()})
+				$("#restrictedmode").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'restrictedmode'})); $(this).blur()})
+				$("#restrictedmodeqt").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'restrictedmodeqt'})); $(this).blur()})
+				$("#restrictedmodeqtl1").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'restrictedmodeqtl1'})); $(this).blur()})
+				$("#view_bans").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'view_bans'})); $(this).blur()})
+				$("#view_players").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'view_players'})); $(this).blur()})
+
+				$("#servers").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'servers'})); $(this).blur()})
+				$("#setinv").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'setinv'})); $(this).blur()})
+				$("#rules").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'rules'})); $(this).blur()})
+				$("#warn").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'warn'})); $(this).blur()})
+				$("#warn_r").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'warn_r'})); $(this).blur()})
+				$("#slay").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'slay'})); $(this).blur()})
+				$("#kick").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'kick'})); $(this).blur()})
+				$("#kick_r").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'kick_r'})); $(this).blur()})
+				$("#noclip").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'noclip'})); $(this).blur()})
+				$("#freeze").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'freeze'})); $(this).blur()})
+				$("#bring").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'bring'})); $(this).blur()})
+				$("#goto").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'goto'})); $(this).blur()})
+				$("#slap").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'slap'})); $(this).blur()})
+				$("#crash").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'crash'})); $(this).blur()})
+				$("#ban").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'ban'})); $(this).blur()})
+				$("#verbal").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'verbal'})); $(this).blur()})
+				$("#qs").click(function() {$.post('http://es_admin2/quick', JSON.stringify({id: selected, type: 'quicksearch'})); $(this).blur()})				
+				$("#setgroup").click(function() {$.post('http://es_admin2/set', JSON.stringify({user: selected, type: 'group', param: $("#newgroup").val()})); $(this).blur()})
+				$("#setlevel").click(function() {$.post('http://es_admin2/set', JSON.stringify({user: selected, type: 'level', param: $("#newlevel").val()})); $(this).blur()})
+				$("#setmoney").click(function() {$.post('http://es_admin2/set', JSON.stringify({user: selected, type: 'money', param: $("#newmoney").val()})); $(this).blur()})
+				$("#setbank").click(function() {$.post('http://es_admin2/set', JSON.stringify({user: selected, type: 'bank', param: $("#newbank").val()})); $(this).blur()})
+
+				$('button').click(function() {$(this).blur()});
+			});
+			
+			$(document).on("keyup", ".user-filter", function(element) {
+				var value = $(this).val().toLowerCase();
+				
+				$("#list > .player").each(function() {
+					console.log(($(this).data("id")));
+					if ($(this).text().toLowerCase().search(value) > -1 || $(this).data("id") == value ) {
+						$(this).show();
+					}
+					else {
+						$(this).hide();
+					}
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<div id="admin">
+			<div class="topbar">
+				<p>BlueBirdRP Admin Console</p>
+				<div id="close">&#10060;</div>
+			</div>
+
+			<div id="tabs">
+				<button id="select_users" class="tab selected">Users</button>
+				<button id="select_server" class="tab">Server</button>
+				<button id="select_history" class="tab">User History Lookup</button>
+				<button id="select_rules" class="tab">Moderator Policy</button>
+			</div>
+
+			<div id="main">
+				<div id="users">
+					<div id="list">
+						<input type="text" class="user-filter">
+					</div>
+					<div id="selected">
+						<div id="notexist">
+							<h1>Select a player</h1>
+						</div>
+						<div id="exist">
+							<h1>Kanersps</h1>
+							<div id="quick">
+								<h3>Quick Options</h3>
+								<button class="quick" id="setinv">Invincible (for streamers)</button>
+								<button class="quick" id="slay">Slay</button>
+								<!--<button class="quick" id="kick">Kick (Fail RP)</button>>--->
+								<button class="quick" id="kick_r">Kick + Reason</button>
+								<button class="quick" id="noclip">Noclip</button>
+								<button class="quick" id="freeze">Freeze</button>
+								<button class="quick" id="bring">Bring</button>
+								<button class="quick" id="goto">Goto</button>
+								<button class="quick" id="slap">Slap</button>
+								<button class="quick" id="crash">Crash</button>
+								<button class="quick" id="ban">Ban + Reason</button>
+								<button class="quick" id="verbal">Verbal + Reason</button>
+								<!--<button class="quick" id="warn">Yellow Card (Fail RP)</button>--->
+							    <button class="quick" id="qs">VIEW HISTORY</button>
+								<button class="quick" id="warn_r">Yellow Card + Other Reason</button>
+							
+							</div>
+							<div id="set">
+								<h3>Attributes</h3>
+								<div class="group_set">
+									<label>Group</label>
+									<input id="newgroup" type="text" placeholder="new group"></input>
+									<button id="setgroup">Set</button>
+								</div>
+								<div class="group_set">
+									<label>Permission Level</label>
+									<input id="newlevel" type="text" placeholder="new level"></input>
+									<button id="setlevel">Set</button>
+								</div>
+								<div class="group_set">
+									<label>Money</label>
+									<input id="newmoney" type="text" placeholder="new money"></input>
+									<button id="setmoney">Set</button>
+								</div>
+								<div class="group_set">
+									<label>Bank</label>
+									<input id="newbank" type="text" placeholder="new bank"></input>
+									<button id="setbank">Set</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="server">
+					<h3>Quick Options</h3>
+					<button class="quick" id="slay_all">Slay</button>
+					<button class="quick" id="bring_all">Bring</button>
+					<button class="quick" id="slap_all">Slap</button>
+					<button class="quick" id="restrictedmode">Toggle Restricted Mode</button>
+					<button class="quick" id="restrictedmodeqt">Toggle Restricted Mode - Quietly</button>
+					<button class="quick" id="restrictedmodeqtl1">Toggle Restricted Mode - Quietly - Allow Level1</button>
+					<button class="quick" id="servers">Check Restriction Mode Status</button>
+					<button class="quick" id="view_bans">VIEW LATEST 25 Bans/Warnings</button>
+					<button class="quick" id="view_players">List Players Online &amp; Flag</button>
+
+				</div>
+				<div id="history">
+				
+			<!--<input class="quick" type="text" name="fname"><button class="quick" id="search">Search Player</button>  ---><br />
+					<textarea style="display: block;width: 100%; -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;" class="quick" id="serverresponse" rows="25" cols="400"></textarea>
+					<h3>Privilege Use is Audited and Recorded across BlueBird</h3>
+					
+				</div>
+				<div id="rules">
+				<p style="text-align: center;"><span style="font-weight: 400;"><strong><span style="color: #0000ff;">Blue</span>Bird</strong></span></p>
+<p style="text-align: center;"><span style="font-weight: 400;"><strong><img src="https://scontent.fmel2-1.fna.fbcdn.net/v/t1.0-9/43173598_248263969169831_7408595612372828160_n.png?_nc_cat=101&amp;_nc_ht=scontent.fmel2-1.fna&amp;oh=04c74c2de3dd503f4e0076c4e849e696&amp;oe=5D21223F" width="50" height="50" /></strong></span></p>
+<p style="text-align: center;"><span style="font-weight: 400;"><strong>Yellow Cards/Kicks/Bans Policy</strong></span></p>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">This policy has put in place in attempt to standardise the yellow cards, kicking and banning process, banning is a last resort wherever possible. For further questions please speak with a member of the Civilian Coordination Team</span></p>
+<p><br /><br /><strong>Verbal warning</strong></p>
+<p><span style="font-weight: 400;">Staff will freeze and teleport to or bring offender to them and verbally warn offender about their behaviour, offer support to new players (offer the discord to assist them further with voice chat or documentation i.e. Server rules)</span></p>
+<p>&nbsp;</p>
+<p><strong>Yellow Cards (given after 1 verbal warning)</strong></p>
+<p><span style="font-weight: 400;">Strictly no more than a total of 3 yellow cards!</span></p>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Abuse towards staff (this may result in an instant temp ban between 1 and 7 days depending on content)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Poor attitude and a refusal to acknowledge any wrongdoing </span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Discrimination using race, gender or sexual preference to intentional hurt or upset another member </span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Impersonating a member of Admin, threatening other players with Kicks or Bans </span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Fail role play</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Vehicle deathmatch</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Random deathmatch</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Fear role play</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Stealing emergency vehicles (must have Admin approval)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Flying an aircraft (must have admin approval)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Failure to follow server rules</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Interrupting other players role plays</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Spamming keybinds on server objects i.e the dealership, vehicle garages. </span></li>
+</ul>
+<p></p>
+<p><span style="font-weight: 400;"><strong>Single warning Kicks (Red Cards)</strong> </span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">Red cards are issued after offender has exceeded verbal warnings and yellow cards or their behaviour warrants an instant red card.</span></p>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Flying an aircraft (aircrafts require admin approval before using for a role-play)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Refusing the change behaviour despite previous warnings given</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Constant Fail role-play (continuing after warnings)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Constant Random deathmatch (continuing after warnings)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Constant Vehicle deathmatch (continuing after warnings)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Constant Fear role-play (continuing after warnings)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Constant shootouts (continuing after warnings)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Continuing to break server rules after previous warnings</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Abusive towards Staff members during and after warnings are given </span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Abusive towards other players during or after warnings are being given</span></li>
+</ul>
+<p></p>
+<p><strong>Ban process</strong></p>
+<ol>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Offender is spectated, staff will teleport to offender or bring to them to discuss reported/ noticeable behaviour. </span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">If the action continues offender will be given a yellow card as a reminder (this process can only be dealt a total of </span><span style="font-weight: 400;">3 </span><span style="font-weight: 400;">times)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">If the offender still continues a red card (kick) will be given (no more reminders will be given, this process can only be dealt a total of</span><span style="font-weight: 400;"> 2</span><span style="font-weight: 400;"> times)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">If the behaviour still hasn&rsquo;t improved after the 2nd kick, issue a temp ban 1-3 days. Then so forth to a 7 day ban and then permanent.</span></li>
+</ol>
+<p>&nbsp;</p>
+<p><strong>Bans</strong><span style="font-weight: 400;"> &nbsp;</span><span style="font-weight: 400;">&nbsp;</span></p>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Continuous warnings to change behaviour (exceeded yellow cards and kicks)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Racist remarks in ooc or verbal (permanent ban after verbal warning, appeals can be made via the ban appeal process)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Abuse towards staff</span></li>
+</ul>
+<p>&nbsp;</p>
+<p><span style="text-decoration: underline;"><strong><span style="color: #ff0000; text-decoration: underline;">The banning process can be fast tracked for the following reasons:</span></strong></span></p>
+<p>&nbsp;</p>
+<p><strong>Instant Bans</strong></p>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Trolls (players that have no intention of role playing) </span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;"> Menus being used by an individual (permanent ban no warnings given, appeals can be made via the ban appeal process) </span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">DDOS Threat (whether it's just a joke or not, these threats are taken seriously. Permanent ban no warnings given, no ban appeal)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Sexual role-play or comments towards any of our members (permanent ban no warnings given, no appeal)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Hacks/ exploits (a reward may be given to those that come forward with a newly found glitch) </span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Player is under the age of 14 (staff members will speak to player first to make them aware, abuse will not be tolerated from either side)</span></li>
+</ul>
+				
+		
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
